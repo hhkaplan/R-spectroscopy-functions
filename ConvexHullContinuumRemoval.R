@@ -37,9 +37,12 @@ ConvexHullContinuumRemoval <- function(inputData,lwav,rwav){
   return(list(cont_rem = cont_rem,cont_fit = cont_fit))
   
   #Plot the results
+  p <- recordPlot()
+  plot.new()
   par(mfrow=c(2,1))
   plot(subData[,1], subData[,2], col = "black")
   lines(cont_fit[,1], cont_fit[,2], col = "red")
   plot(subData[,1], subData[,3], col = "black")
   lines(cont_fit[,1], cont_fit[,3], col = "red")
+  
 }
