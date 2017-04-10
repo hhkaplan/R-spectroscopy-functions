@@ -27,13 +27,15 @@ SpliceSpectra <- function(short_data,long_data, splice_wav){
   #for their corresponding wavelength and wavenumber vectors.
   spliced_spectra <- mapply(c,short_data, long_data_scaled)
   spliced_spectra.df <- as.data.frame(spliced_spectra)
-  return(spliced_spectra.df)
+  
   
   #plot the results
   plot.new()
+  frame()
   plot(spliced_spectra[,1], spliced_spectra[,2], col = "black", type = "l",xlab="Wavelength", ylab="Reflectance")
   lines(short_data[,1], short_data[,2], col = "red")
   lines(long_data[,1], long_data[,2], col ="blue")
   legend('topright',c("Spliced", "Short Wavelengths", "Long Wavelengths"),lty = c(1,1,1),
          col=c('black','red','blue'),bty ="n")
+  return(spliced_spectra.df)
 }

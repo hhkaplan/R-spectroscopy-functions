@@ -1,0 +1,41 @@
+---
+title: "Spectroscopy Workflow"
+output: html_document
+---
+Step 1: Set a file path for the FTIR data and import ASD data 
+```{r, echo=FALSE}
+
+fpath <- '/Users/hannahkaplan/Desktop/GR2_FTIR/'
+ASD <- read.csv('/Users/hannahkaplan/Desktop/GR2_ASD.csv')
+
+```
+
+Step 2: Combine all FTIR data into one data frame
+
+```{r, echo=TRUE}
+
+source("ConcatenateFTIRoutputs.R")
+FTIR <- ConcatenateFTIRoutputs(fpath)
+
+```
+
+Step 3: Splice ASD and FTIR data
+
+```{r, echo=TRUE}
+
+source("SpliceSpectra.R")
+splice_data <- SpliceSpectra(ASD, FTIR, 1.7)
+
+```
+
+Step 4: Continuum remove spliced data
+
+```{r, echo=TRUE}
+
+source("ConvexHullContinuumRemoval.R")
+cont <- ConvexHullContinuumRemoval(splice_data, 3.1, 3.8)
+```
+```{r, echo=FALSE}
+plot(cont$cont_rem[,1], cont$cont_rem[,2], col = "black", type = "l")
+lines(cont$cont_rem[,1], cont$cont_rem[,3], col = "black")
+```

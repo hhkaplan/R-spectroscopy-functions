@@ -33,16 +33,18 @@ ConvexHullContinuumRemoval <- function(inputData,lwav,rwav){
   #finalize matrices to include wavelengths
   cont_rem <- cbind(subData[,1],cont_rem)
   cont_fit <- cbind(subData[,1],cont_fit)
-  #return both cont_rem and cont_fits labeled in a list
-  return(list(cont_rem = cont_rem,cont_fit = cont_fit))
+
   
   #Plot the results
   p <- recordPlot()
   plot.new()
+  frame()
   par(mfrow=c(2,1))
   plot(subData[,1], subData[,2], col = "black")
   lines(cont_fit[,1], cont_fit[,2], col = "red")
   plot(subData[,1], subData[,3], col = "black")
   lines(cont_fit[,1], cont_fit[,3], col = "red")
   
+  #return both cont_rem and cont_fits labeled in a list
+  return(list(cont_rem = cont_rem,cont_fit = cont_fit))
 }
