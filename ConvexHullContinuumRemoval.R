@@ -36,7 +36,6 @@ ConvexHullContinuumRemoval <- function(inputData,lwav,rwav){
 
   
   #Plot the results
-  p <- recordPlot()
   plot.new()
   frame()
   par(mfrow=c(2,1))
